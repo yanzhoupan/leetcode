@@ -1,0 +1,13 @@
+# 动态规划：前i天的最大收益 = max{前i-1天的最大收益，第i天的价格-前i-1天中的最小价格}
+class Solution(object):
+    def maxProfit(self, prices):
+        """
+        :type prices: List[int]
+        :rtype: int
+        """
+        currMax = 0
+        currMinPrice = 999999
+        for i in range(len(prices)):
+        	currMinPrice = min(currMinPrice, prices[i])
+        	currMax = max(currMax, prices[i]-currMinPrice)
+        return currMax
