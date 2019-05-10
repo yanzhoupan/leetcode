@@ -1,0 +1,22 @@
+# Given a positive integer, 
+# return its corresponding column title as appear in an Excel sheet.
+
+class Solution(object):
+    def convertToTitle(self, n):
+        """
+        :type n: int
+        :rtype: str
+        """
+        res = ''
+        while n:
+            n -= 1
+            idx = n % 26 + 65
+            res = chr(idx) + res
+            n /= 26
+        return res
+    
+# 10进制转26进制??
+# No，每次生成都要减一，因为是从1开始，而不是从0开始
+# （每次减一之后可以转换为类似26进制）
+# assic code of A-Z: 65-90
+# use chr(65) to denote 'A'
