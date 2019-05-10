@@ -1,0 +1,9 @@
+class Solution(object):
+    def majorityElement(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        return sorted(nums)[len(nums)//2]
+    
+# 将数组排序之后，众数一定处在中间位置
