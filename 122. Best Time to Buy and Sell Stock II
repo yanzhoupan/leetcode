@@ -1,4 +1,4 @@
-# You can sell and buy stocks within the same day
+# You can sell and buy stocks within the same day.
 class Solution(object):
     def maxProfit(self, prices):
         """
@@ -14,3 +14,4 @@ class Solution(object):
         		sumProfit += diff
         return sumProfit
         
+xixi
