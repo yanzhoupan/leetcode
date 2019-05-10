@@ -1,0 +1,29 @@
+# Given a non-empty array of integers, every element appears twice except for one. Find that single one.
+class Solution(object):
+    def singleNumber(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        if len(nums)==1:
+        	return nums[0]
+        nums.sort()
+        while len(nums)>=2:
+        	if nums[0] == nums[1]:
+        		nums = nums[2:]
+        	else:
+        		return nums[0]
+        return nums[0]
+
+    
+# other: use xor！！！
+# class Solution:
+#     def singleNumber(self, nums):
+#         """
+#         :type nums: List[int]
+#         :rtype: int
+#         """
+#         a = 0
+#         for num in nums:
+#             a = a ^ num
+#         return a
