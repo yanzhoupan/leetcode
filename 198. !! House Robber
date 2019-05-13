@@ -1,0 +1,30 @@
+# 使用动态规划方法
+# dp方程：dp[i] = max(dp[i-2]+nums[i], dp[i-1])
+class Solution(object):
+    def rob(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        if len(nums) == 0:
+            return 0
+        if len(nums)<3:
+            return max(nums)
+        
+        dp=[0 for i in range(len(nums))]
+        for i in range(len(nums)):
+            dp[i] = max(dp[i-2]+nums[i], dp[i-1])
+        return dp[-1]
+    
+        
+# 动态规划：什么状态适合动态规划？
+# 1. 最优化策略的子结构也是最优的
+# 2. 每个状态都是过去历史的一个完整总结（之前的状态无法越过当前状态而影响未来的结果）
+
+# 大佬解法：
+        # last = 0 
+        # now = 0
+        # for i in nums: 
+        #     #这是一个动态规划问题
+        #     last, now = now, max(last + i, now)
+        # return now
