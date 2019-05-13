@@ -1,0 +1,7 @@
+# Read from the file file.txt and output all valid phone numbers to stdout.
+# 考正则表达式
+#  (xxx) xxx-xxxx or xxx-xxx-xxxx. (x means a digit)
+grep -P '^(\d{3}-|\(\d{3}\) )\d{3}-\d{4}$' file.txt
+
+# 正则表达式中，^表示开始，$表示结束
+# 正则表达式中的空格位置也很重要
