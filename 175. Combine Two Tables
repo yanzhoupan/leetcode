@@ -1,0 +1,7 @@
+# Write your MySQL query statement below
+select FirstName, LastName, City, State
+from Person
+left join Address
+On Person.PersonId = Address.PersonId
+
+# 懵逼树上懵逼果，懵逼树下你和我
