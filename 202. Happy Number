@@ -1,0 +1,29 @@
+class Solution(object):
+    def isHappy(self, n):
+        """
+        :type n: int
+        :rtype: bool
+        """
+        sumNow=n
+        appear = []
+        while sumNow not in appear:
+            n_list = list(str(sumNow))
+            appear.append(sumNow)
+            sumNow = 0
+            for i in n_list:
+                sumNow += int(i)*int(i)
+        if sumNow == 1:
+            return True
+        else:
+            return False
+
+        
+# 另一个解法：所有的不快乐数都会进入 4 → 16 → 37 → 58 → 89 → 145 → 42 → 20 → 4 的循环中
+        # sumNow=n
+        # while True:
+        #     n_list = list(str(sumNow))
+        #     sumNow = 0
+        #     for i in n_list:
+        #         sumNow += int(i)*int(i)
+        #     if sumNow == 1: return True
+        #     if sumNow == 4: return False
