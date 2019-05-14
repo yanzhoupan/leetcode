@@ -1,0 +1,19 @@
+class Solution(object):
+    def isIsomorphic(self, s, t):
+        """
+        :type s: str
+        :type t: str
+        :rtype: bool
+        """
+        # def canMap(s, t):
+        strMap = {}
+        for i in range(len(s)):
+            if s[i] in strMap:
+                if strMap[s[i]] != t[i]:
+                    return False
+            else:
+                if t[i] in strMap.values():
+                    return False
+            strMap[s[i]] = t[i]
+        return True
+# 注意：使用in mapName的效果和使用in mapName.keys()是相同的，可以通过这种写法提升算法的速度。
