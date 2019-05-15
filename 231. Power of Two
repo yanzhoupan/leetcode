@@ -1,0 +1,8 @@
+# 2的幂次方在二进制下，只有1位是1，其余全是0。
+class Solution(object):
+    def isPowerOfTwo(self, n):
+        """
+        :type n: int
+        :rtype: bool
+        """
+        return n > 0 and not (n & (n - 1))
