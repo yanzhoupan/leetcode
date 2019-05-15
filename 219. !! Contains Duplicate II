@@ -1,0 +1,27 @@
+class Solution(object):
+    def containsNearbyDuplicate(self, nums, k):
+        """
+        :type nums: List[int]
+        :type k: int
+        :rtype: bool
+        """
+        # 本人方法会超时，应该用一个dict存下每个元素最后出现的索引位置
+        # if k >= len(nums):
+        #     if len(set(nums)) < len(nums):
+        #         return True
+        # for i in range(len(nums)-k):
+        #     for j in range(1, k+1):
+        #         if nums[i] == nums[i+j]:
+        #             return True
+        # Knums = nums[len(nums)-k:len(nums)]
+        # if len(set(Knums)) < len(Knums):
+        #     return True
+        # return False
+        
+        numDict = {}
+        for i in range(len(nums)):
+            if nums[i] in numDict:
+                if i-numDict[nums[i]] <= k:
+                    return True
+            numDict[nums[i]] = i
+        return False
