@@ -1,0 +1,53 @@
+# Definition for singly-linked list.
+# class ListNode(object):
+#     def __init__(self, x):
+#         self.val = x
+#         self.next = None
+
+class Solution(object):
+    def isPalindrome(self, head):
+        """
+        :type head: ListNode
+        :rtype: bool
+        """
+        # def printList(head):
+        #     res = []
+        #     while head != None:
+        #         res.append(head.val)
+        #         head = head.next
+        #     print(res)
+            
+        # 1.find mid
+        # copy?
+        # import copy
+        # fast = copy.copy(head)
+        # slow = copy.copy(head)
+        fast = head
+        slow = head
+        while fast!=None:
+            slow = slow.next
+            if fast.next == None:
+                fast = fast.next
+            else:
+                fast = fast.next.next
+        
+        # 2.reverse, 试试连续等号？不可！prevSlow要先赋值完成才可以使用
+        nextSlow = None
+        while slow != None:            
+            prevSlow = slow.next
+            slow.next = nextSlow
+            nextSlow = slow
+            slow = prevSlow
+        # printList(head)
+        
+        # 3. compare
+        while nextSlow != None:
+            if head.val != nextSlow.val:
+                return False
+            head = head.next
+            nextSlow = nextSlow.next
+        return True
+        
+        
+# 解决问题的核心是要翻转链表的后半部分
+# 这样就可以在O(n) 的时间复杂度和 O(1) 的空间复杂度内完成
