@@ -1,0 +1,11 @@
+class Solution(object):
+    def addDigits(self, num):
+        """
+        :type num: int
+        :rtype: int
+        """
+        if num <= 9:
+            return num
+        return 1 + (num - 1) % 9;
+# 找规律：当num小于9，直接返回num
+# 大于9时，如果能被9整除，则返回9。如果不能被整除，就返回被9除的余数。
