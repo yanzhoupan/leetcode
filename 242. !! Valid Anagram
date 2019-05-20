@@ -1,0 +1,24 @@
+class Solution(object):
+    def isAnagram(self, s, t):
+        """
+        :type s: str
+        :type t: str
+        :rtype: bool
+        """
+        if len(s) != len(t):
+            return False
+        leng = len(s)
+        sList = [0 for i in range(26)]
+        tList = [0 for i in range(26)]
+        for i in s:
+            sList[ord(i)-ord('a')] +=1
+        for i in t:
+            tList[ord(i)-ord('a')] += 1
+        for i in range(26):
+            if sList[i] != tList[i]:
+                return False
+        return True
+    
+    
+# 需要记录每个字母出现的次数！
+# ！！python中可以用ord将其他编码转化为assic值，从而进行运算。
