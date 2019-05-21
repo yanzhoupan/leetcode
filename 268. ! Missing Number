@@ -1,0 +1,22 @@
+# Time: O(n)
+# Space: O(1)
+class Solution(object):
+    def missingNumber(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        # pyz解法，排序之后循环一次：
+        # nums = sorted(nums)
+        # if nums[0] != 0:
+        #     return 0
+        # for i in range(len(nums)-1):
+        #     if nums[i+1] - nums[i] == 2:
+        #         return i+1
+        # return len(nums)
+        
+        
+        # 解法2，分别求和，计算差值
+        numsSum = sum(nums)
+        trueSum = int(0.5*len(nums)*(len(nums)+1))
+        return trueSum-numsSum
