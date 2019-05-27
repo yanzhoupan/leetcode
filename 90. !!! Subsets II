@@ -1,0 +1,23 @@
+class Solution(object):
+    def subsetsWithDup(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: List[List[int]]
+        """
+        # 递归：包含当前元素/不包含当前元素,首先对原数据进行排序！
+        # 感觉输出的子集都是正确的啊。。。顺序跟答案不对应，也是绝了。。。
+        nums.sort()
+        res = [[]]
+        if len(nums) == 0 or len(nums) == 1:
+            res.append(nums)
+            return res
+        for i in range(len(nums)-1):
+            currNum = nums[i]
+            resWithoutNum = self.subsetsWithDup(nums[i+1:])
+            resWithNum = []
+            for j in resWithoutNum:
+                resWithNum.append(j+[currNum])
+            for t in resWithNum+resWithoutNum:
+                if t not in res:
+                    res.append(t)
+        return res
