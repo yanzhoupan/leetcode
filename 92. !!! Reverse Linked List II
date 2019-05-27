@@ -1,0 +1,30 @@
+# Definition for singly-linked list.
+# class ListNode(object):
+#     def __init__(self, x):
+#         self.val = x
+#         self.next = None
+
+class Solution(object):
+    def reverseBetween(self, head, m, n):
+        """
+        :type head: ListNode
+        :type m: int
+        :type n: int
+        :rtype: ListNode
+        """
+        dummy = ListNode(0)
+        dummy.next = head
+        pre = ListNode(0)
+        pre = dummy
+        for i in range(m-1):
+            pre = pre.next
+        curr = pre.next
+        print(pre.val, curr.val)
+        for i in range(m,n):
+            tmp = curr.next
+            curr.next = tmp.next
+            tmp.next = pre.next
+            pre.next = tmp
+        return dummy.next
+    
+#     注意dummy的作用，dummy是作为pre开始的载体，防止m=1的时候pre没有位置！
