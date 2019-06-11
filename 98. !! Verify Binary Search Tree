@@ -1,0 +1,59 @@
+# Definition for a binary tree node.
+# class TreeNode(object):
+#     def __init__(self, x):
+#         self.val = x
+#         self.left = None
+#         self.right = None
+# pyz的狗屎代码：完全按照定义去做判断
+# class Solution(object):
+#     def isValidBST(self, root):
+#         """
+#         :type root: TreeNode
+#         :rtype: bool
+#         """
+#         if root == None:
+#             return True
+#         def treeValues(root):
+#             if root != None:
+#                 vals.append(root.val)
+#                 treeValues(root.left)
+#                 treeValues(root.right)
+#         leftIs = True
+#         rightIs = True
+#         if root.left != None:
+#             vals = []
+#             treeValues(root.left)
+#             for i in vals:
+#                 if i >= root.val:
+#                     return False
+#             leftIs = self.isValidBST(root.left)
+#         if root.right != None:
+#             vals = []
+#             treeValues(root.right)
+#             for i in vals:
+#                 if i <= root.val:
+#                     return False
+#             rightIs = self.isValidBST(root.right)
+#         if leftIs and rightIs:
+#             return True
+#         else:
+#             return False
+
+# 注意二叉搜索树的特性为，中序遍历之后可以得到升序序列。
+class Solution(object):
+    def isValidBST(self, root):
+        """
+        :type root: TreeNode
+        :rtype: bool
+        """
+        vals = []
+        def treeValues(root):
+            if root != None:
+                treeValues(root.left)
+                vals.append(root.val)
+                treeValues(root.right)
+        treeValues(root)
+        for i in range(0,len(vals)-1):
+            if vals[i] >= vals[i+1]:
+                return False
+        return True
