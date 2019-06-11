@@ -1,0 +1,41 @@
+# Definition for a binary tree node.
+# class TreeNode(object):
+#     def __init__(self, x):
+#         self.val = x
+#         self.left = None
+#         self.right = None
+
+class Solution(object):
+    def levelOrder(self, root):
+        """
+        :type root: TreeNode
+        :rtype: List[List[int]]
+        """
+        import copy
+        if root == None:
+            return []
+        currLayer = [root]
+        nextLayer = []
+        ans = []
+        while True:
+            currVals = []
+            for i in currLayer:
+                currVals.append(i.val)
+                if i.left != None:
+                    nextLayer.append(i.left)
+                if i.right != None:
+                    nextLayer.append(i.right)
+            if len(nextLayer) == 0:
+                break
+            ans.append(copy.copy(currVals))
+            currLayer = nextLayer
+            nextLayer = []
+        finalVals = []
+        for i in currLayer:
+            finalVals.append(i.val)
+        ans.append(finalVals)
+        return ans
+# 因为是按层输出，所以每次循环都记录当前层和下一层
+# 当下一层没有的时候，跳出循环，并把当前层剩下的值加入到结果中，就可也返回最终结果了
+
+
