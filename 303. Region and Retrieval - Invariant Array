@@ -1,0 +1,28 @@
+# 说明中提到“会多次调用 sumRange 方法”， 所以每次都逐个相加计算子区间的和不是理想的做法， 
+# 可以使用sum[i]存储nums前i个元素的和。
+# 则可得到i-j 子区间的和为sum[j]-sum[i-1]。(我用了补0来处理i-1，所以变成了sum[j+1]-sum[i])
+
+class NumArray(object):
+
+    def __init__(self, nums):
+        """
+        :type nums: List[int]
+        """
+        self.sums = [0]
+        for i in nums:
+            self.sums.append(self.sums[-1]+i)
+        print(self.sums)
+        
+
+    def sumRange(self, i, j):
+        """
+        :type i: int
+        :type j: int
+        :rtype: int
+        """
+        return self.sums[j+1] - self.sums[i]
+
+
+# Your NumArray object will be instantiated and called as such:
+# obj = NumArray(nums)
+# param_1 = obj.sumRange(i,j)
