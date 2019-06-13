@@ -1,0 +1,16 @@
+# 判断第二个字符串是否包含了第一个字符串中的所有字符
+
+class Solution(object):
+    def canConstruct(self, ransomNote, magazine):
+        """
+        :type ransomNote: str
+        :type magazine: str
+        :rtype: bool
+        """
+        noteList = list(ransomNote)
+        magList = list(magazine)
+        for i in noteList:
+            if i not in magList:
+                return False
+            magList.remove(i)
+        return True
