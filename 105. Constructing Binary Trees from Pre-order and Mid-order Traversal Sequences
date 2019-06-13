@@ -1,0 +1,32 @@
+# Definition for a binary tree node.
+# class TreeNode(object):
+#     def __init__(self, x):
+#         self.val = x
+#         self.left = None
+#         self.right = None
+
+class Solution(object):
+    def buildTree(self, preorder, inorder):
+        """
+        :type preorder: List[int]
+        :type inorder: List[int]
+        :rtype: TreeNode
+        """
+        if len(preorder) == 0:
+            return None
+        rootVal = preorder[0]
+        if len(preorder) == 1:
+            return TreeNode(rootVal)
+        # left tree order
+        leftInorder = inorder[0 : inorder.index(rootVal)]
+        leftPreorder = preorder[1 : len(leftInorder)+1]
+        # right tree order
+        rightInorder = inorder[inorder.index(rootVal)+1 :]
+        rightPreorder = preorder[len(leftInorder)+1 :]
+        # build tree
+        root = TreeNode(rootVal)
+        root.left = self.buildTree(leftPreorder, leftInorder)
+        root.right = self.buildTree(rightPreorder, rightInorder)
+        return root
+
+# 根据中序和后序序列构造二叉树，很典型的递归算法
