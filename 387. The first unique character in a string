@@ -1,0 +1,10 @@
+class Solution(object):
+    def firstUniqChar(self, s):
+        """
+        :type s: str
+        :rtype: int
+        """
+        for idx, c in enumerate(s):
+            if c not in s[idx + 1:] and c not in s[:idx]:
+                return idx
+        return -1
