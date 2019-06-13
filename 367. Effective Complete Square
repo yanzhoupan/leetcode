@@ -1,0 +1,21 @@
+# 思路：二分法
+class Solution(object):
+    def isPerfectSquare(self, num):
+        """
+        :type num: int
+        :rtype: bool
+        """
+        if num == 1:
+            return True
+        low = 1
+        high = num
+        while low<=high:
+            mid = low+(high-low)/2
+            midSqu = mid*mid
+            if midSqu == num:
+                return True
+            elif midSqu > num:                
+                high = mid-1
+            else:
+                low = mid+1
+        return False
