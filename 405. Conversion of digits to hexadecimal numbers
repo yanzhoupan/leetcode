@@ -1,0 +1,21 @@
+class Solution(object):
+    def toHex(self, num):
+        """
+        :type num: int
+        :rtype: str
+        """
+        shang=0
+        yu=0
+        result=''
+        trans=['a','b','c','d','e','f']  #10-15
+        if num==0:
+            return '0'
+        if num < 0:
+                num += 2**32
+        while(num>0):
+            if num%16>=10:
+                result+=str(trans[num%16-10])
+            else:
+                result+=str(num%16)
+            num //=16
+        return result[::-1]
