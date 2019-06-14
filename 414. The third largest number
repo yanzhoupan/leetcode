@@ -1,0 +1,35 @@
+class Solution(object):
+    def thirdMax(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """        
+        # pyz的方法：
+        
+        if len(nums) < 3:
+            return max(nums)
+        if len(nums) < 3:
+            return max(nums)
+        max1 = max(nums)
+        max2 = float('-inf')
+        max3 = float('-inf')
+        for i in nums:
+            if i < max1 and i > max2:
+                max2 = i
+        if max2 == float('-inf'):
+            return max1
+        for i in nums:
+            if i < max2 and i > max3:
+                max3 = i
+        if max3 == float('-inf'):
+            return max1
+        return max3
+    
+    # 排序的方法：
+#         nums = list(set(nums))
+#         if len(nums) < 3:
+#             return max(nums)
+        
+#         nums.sort()
+#         print(nums)
+#         return nums[-3]
