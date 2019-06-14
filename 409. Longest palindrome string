@@ -1,0 +1,26 @@
+class Solution(object):
+    def longestPalindrome(self, s):
+        """
+        :type s: str
+        :rtype: int
+        """
+        sList = list(s)
+        sDict = {}
+        res = 0
+        hasSingle = 0
+        for i in sList:
+            if i not in sDict.keys():
+                sDict[i] = 1
+            else:
+                sDict[i] += 1
+        for i in sDict.values():
+            if i%2 == 0:
+                res += i
+            else:
+                res += i-1
+                hasSingle = 1
+        if hasSingle:
+            res += 1
+        return res
+    
+# 双数就直接算上，单数就减一再算上。确认有单数的话在结果上再加一
