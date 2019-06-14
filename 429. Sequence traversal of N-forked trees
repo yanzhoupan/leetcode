@@ -1,0 +1,44 @@
+"""
+# Definition for a Node.
+class Node(object):
+    def __init__(self, val, children):
+        self.val = val
+        self.children = children
+"""
+# 建立两个队列：currLayer和nextLayer
+
+class Solution(object):
+    def levelOrder(self, root):
+        """
+        :type root: Node
+        :rtype: List[List[int]]
+        """
+        # if root == None:
+        #     return []
+        # currLayer = [root]
+        # res = []
+        # while True:
+        #     currVals = []
+        #     nextLayer = []
+        #     while len(currLayer) > 0:
+        #         currNode = currLayer.pop(0)
+        #         currVals.append(currNode.val)
+        #         for i in  currNode.children:
+        #             nextLayer.append(i)
+        #     res.append(currVals)
+        #     if len(nextLayer) == 0:
+        #         return res
+        #     currLayer = nextLayer
+        
+        if not root:
+            return []
+        res=[]
+        stack=[root]
+        while stack:
+            res.append([node.val for node in stack])
+            temp=[]
+            for node in stack:
+                for n in node.children:
+                    temp.append(n)
+            stack=temp
+        return res
