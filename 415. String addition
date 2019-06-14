@@ -1,0 +1,28 @@
+class Solution(object):
+    def addStrings(self, num1, num2):
+        """
+        :type num1: str
+        :type num2: str
+        :rtype: str
+        """
+        n1 = len(num1)
+        n2 = len(num2)
+        if n1==0:return num2
+        if n2==0:return num1
+        i = n1-1
+        j = n2-1
+        add = 0
+        res = ""
+        while i>=0 or j>=0 or add:
+            tmp_a = 0
+            tmp_b = 0
+            if i>=0:
+                tmp_a = int(num1[i])
+            if j>=0:
+                tmp_b = int(num2[j])
+            val = tmp_a + tmp_b + add
+            res += str(val%10)
+            add = val//10
+            i -= 1
+            j -= 1
+        return res[::-1]
