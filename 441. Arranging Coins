@@ -1,0 +1,24 @@
+class Solution(object):
+    def arrangeCoins(self, n):
+        """
+        :type n: int
+        :rtype: int
+        """
+#       使用减法或者加法（充分利用循环），不要每次都是用等差数列（会有很多重复的计算）
+        # res = 0
+        # while n > 0:
+        #     n = n-res
+        #     if n < 0:
+        #         res -= 1
+        #         break
+        #     if n == 0:
+        #         break
+        #     res += 1
+        # return res
+        
+
+        res = 0
+        while n - res > 0:
+            res += 1
+            n -= res
+        return res
