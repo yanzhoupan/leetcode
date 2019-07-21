@@ -1,0 +1,17 @@
+class Solution(object):
+    def findContentChildren(self, g, s):
+        """
+        :type g: List[int]
+        :type s: List[int]
+        :rtype: int
+        """
+        res = 0
+        g.sort(reverse=True)
+        # s.sort(reverse=True)
+        for cookie in s:
+            for greed in g:
+                if greed <= cookie:
+                    res += 1
+                    g.remove(greed)
+                    break
+        return res
