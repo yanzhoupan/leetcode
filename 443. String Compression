@@ -1,0 +1,26 @@
+class Solution(object):
+    def compress(self, chars):
+        """
+        :type chars: List[str]
+        :rtype: int
+        """
+        if len(chars) == 0:
+            return []
+        # two points
+        p = 0
+        q = 0
+        while q < len(chars):
+            cont = 1
+            # find same chars and count
+            while q+1 < len(chars) and chars[q+1] == chars[q]:
+                cont += 1
+                q += 1
+            chars[p] = chars[q]
+            p += 1
+            if cont > 1:
+                cont = list(str(cont))
+                for i in cont:
+                    chars[p] = i
+                    p += 1
+            q += 1
+        return p
