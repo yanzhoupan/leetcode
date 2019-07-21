@@ -1,32 +1,33 @@
-class Solution(object):
-    def numberOfBoomerangs(self, points):
-        """
-        :type points: List[List[int]]
-        :rtype: int
-        """
-        # calculate the distance
-        def dis(p1, p2):
-            return (p1[0]-p2[0])*(p1[0]-p2[0]) + (p1[1]-p2[1])*(p1[1]-p2[1])
-        res = 0
-        # find boomerangs
-        for i in points:
-            for j in points:
-                if j != i:
-                    for k in points:
-                        if k != j:
-                            if dis(i,j) == dis(i,k):
-                                res += 1
-        return res
+# class Solution(object):
+#     def numberOfBoomerangs(self, points):
+#         """
+#         :type points: List[List[int]]
+#         :rtype: int
+#         """
+#         # calculate the distance
+#         def dis(p1, p2):
+#             return (p1[0]-p2[0])*(p1[0]-p2[0]) + (p1[1]-p2[1])*(p1[1]-p2[1])
+#         res = 0
+#         # find boomerangs
+#         for i in points:
+#             for j in points:
+#                 if j != i:
+#                     for k in points:
+#                         if k != j:
+#                             if dis(i,j) == dis(i,k):
+#                                 res += 1
+#         return res
     
-    # 以上解法的问题：三层循环太多，超出时间限制，可以考虑空间换时间的策略。
+    # 问题：三层循环太多，可以考虑空间换时间的策略。
     （一个两层循环，将计算出的距离都放在字典中+一个一层循环，去字典中匹配，查看是否有相同的distance）
- 
+    
+    # 以下解法仅用了两层循环计算距离
 class Solution:
     def distance(self, p1, p2):
         # 注意 a**2 + b**2 比 a*a + b*b 耗时！
         return (p1[0]-p2[0])*(p1[0]-p2[0]) + (p1[1]-p2[1])*(p1[1]-p2[1])
     
-    def numberOfBoomerangs(self, points: List[List[int]]):
+    def numberOfBoomerangs(self, points):
         if not points:
             return 0
         res = 0
