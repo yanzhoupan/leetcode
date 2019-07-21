@@ -1,0 +1,16 @@
+class Solution(object):
+    def minMoves(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        # minNum = min(nums)
+        # res = 0
+        # for i in nums:
+        #     if i != minNum:
+        #         res += i-minNum
+        # return res
+        
+        return sum(nums)-min(nums)*len(nums)
+    
+    # 反向思维，可以将n-1个数加1等同于可以将1个数减1
