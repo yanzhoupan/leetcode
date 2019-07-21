@@ -18,4 +18,27 @@ class Solution(object):
                                 res += 1
         return res
     
-    # 以上解法的问题：三层循环太多，超出时间限制，可以考虑空间换时间的策略。（一个两层循环，将计算出的距离都放在字典中+一个一层循环，去字典中匹配，查看是否有相同的distance）
+    # 以上解法的问题：三层循环太多，超出时间限制，可以考虑空间换时间的策略。
+    （一个两层循环，将计算出的距离都放在字典中+一个一层循环，去字典中匹配，查看是否有相同的distance）
+ 
+class Solution:
+    def distance(self, p1, p2):
+        # 注意 a**2 + b**2 比 a*a + b*b 耗时！
+        return (p1[0]-p2[0])*(p1[0]-p2[0]) + (p1[1]-p2[1])*(p1[1]-p2[1])
+    
+    def numberOfBoomerangs(self, points: List[List[int]]):
+        if not points:
+            return 0
+        res = 0
+        for point in points:
+            dic = dict()
+            for tmp in points:
+                if point != tmp:
+                    dist = self.distance(point, tmp)
+                    if dist not in dic:
+                        dic[dist] = 1
+                    else:
+                        dic[dist] += 1
+            for num in dic:
+                res += dic[num]*(dic[num]-1) # 等于1 也没有关系 1 *（1-1）= 0
+        return res
