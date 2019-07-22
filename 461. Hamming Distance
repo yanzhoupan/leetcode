@@ -12,3 +12,5 @@ class Solution(object):
             if i == '1':
                 cont += 1
         return cont
+
+# or use one line:  return bin(x^y).count('1')
