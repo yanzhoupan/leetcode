@@ -1,0 +1,14 @@
+class Solution(object):
+    def repeatedSubstringPattern(self, s):
+        """
+        :type s: str
+        :rtype: bool
+        """
+        subLen = []
+        for i in range(1, len(s)):
+            if len(s)%i == 0:
+                subLen.append(i)
+        for j in subLen:
+            if s == s[0:j]*int(len(s)/j):
+                return True
+        return False
