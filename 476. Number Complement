@@ -1,0 +1,15 @@
+class Solution(object):
+    def findComplement(self, num):
+        """
+        :type num: int
+        :rtype: int
+        """
+        num = list(str(bin(num)))[2:]
+        for i in range(len(num)):
+            num[i] = int(num[i])^1
+        res = 0
+        curr = 1
+        for i in num[::-1]:
+            res += i * curr
+            curr *= 2
+        return res
