@@ -1,0 +1,34 @@
+class Solution(object):
+    def islandPerimeter(self, grid):
+        """
+        :type grid: List[List[int]]
+        :rtype: int
+        """
+        def oneCubePeri(grid, i, j):
+            onePeri = 0
+            if i == 0:
+                onePeri += 1
+            elif grid[i-1][j] == 0:
+                onePeri += 1 
+            if  i == len(grid)-1:
+                onePeri += 1
+            elif grid[i+1][j] == 0:
+                onePeri += 1     
+            if j == 0:
+                onePeri += 1
+            elif grid[i][j-1] == 0:
+                onePeri += 1
+            if j == len(grid[0])-1:
+                onePeri += 1
+            elif grid[i][j+1] == 0:
+                onePeri += 1
+            return onePeri
+        res = 0
+        width = len(grid[0])
+        hight = len(grid)
+        for i in range(hight):
+            for j in range(width):
+                # print(i,j)
+                if grid[i][j] == 1:
+                    res += oneCubePeri(grid, i, j)
+        return res
