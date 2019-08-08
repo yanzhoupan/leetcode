@@ -1,0 +1,27 @@
+class Solution(object):
+    def findWords(self, words):
+        """
+        :type words: List[str]
+        :rtype: List[str]
+        """
+        res = []
+        row1 = ['q','w','e','r','t','y','u','i','o','p']
+        row2 = ['a','s','d','f','g','h','j','k','l']
+        row3 = ['z','x','c','v','b','n','m']
+        for word in words:
+            wordLow = word.lower()
+            flag = 1
+            for char in wordLow:
+                if wordLow[0] in row1 and char not in row1:
+                    flag = 0
+                    break
+                elif wordLow[0] in row2 and char not in row2:
+                    flag = 0
+                    break
+                elif wordLow[0] in row3 and char not in row3:
+                    flag = 0
+                    break
+            if flag:
+                res.append(word)
+        return res
+                    
