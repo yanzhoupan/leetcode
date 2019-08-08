@@ -1,0 +1,27 @@
+class Solution(object):
+    def findRelativeRanks(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: List[str]
+        """
+        import copy
+        oriNums = copy.copy(nums)
+        nums.sort(reverse=True)
+        
+        #rank = dict(enumerate(num, start=1))
+        #print(rank)
+        
+        res = []
+        rank = {}
+        for i in range(len(nums)):
+            rank[nums[i]]=str(i+1)
+        for j in oriNums:
+            res.append(rank[j])
+        for k in range(len(res)):
+            if res[k] == '1':
+                res[k]  = 'Gold Medal'
+            elif res[k] == '2':
+                res[k] = 'Silver Medal'
+            elif res[k] == '3':
+                res[k] = 'Bronze Medal'
+        return res
