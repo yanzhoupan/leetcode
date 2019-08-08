@@ -1,0 +1,25 @@
+class Solution(object):
+    def detectCapitalUse(self, word):
+        """
+        :type word: str
+        :rtype: bool
+        """
+        wordList = list(word)
+        def allCap(wordList):
+            for i in wordList:
+                if i == i.lower():
+                    return False
+            return True
+        def allLow(wordList):
+            for i in wordList:
+                if i == i.upper():
+                    return False
+            return True
+        def FirstCap(wordList):
+            if wordList[0] == wordList[0].lower():
+                return False
+            for i in wordList[1:]:
+                if i == i.upper():
+                    return False
+            return True
+        return allCap(wordList) or allLow(wordList) or FirstCap(wordList)
