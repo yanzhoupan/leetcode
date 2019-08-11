@@ -1,0 +1,39 @@
+class Solution(object):
+    def search(self, nums, target):
+        """
+        :type nums: List[int]
+        :type target: int
+        :rtype: bool
+        """
+        # return target in nums
+        # find the rotate point, use 2 separate search
+        if len(nums) == 0:
+            return False
+        if len(nums) == 1 and nums[0] != target:
+                return False
+        p = 0
+        while p+1<len(nums) and nums[p]<=nums[p+1]:
+            p += 1
+        # print(p)
+        # p is the rotate point
+        
+        # half search
+        def Halfsearch(target, nums):
+            print(nums)
+            left, right = 0, len(nums)-1
+            while left<=right:
+                mid = (right+left)//2
+                # print(left, right, mid)
+                if nums[mid] == target:
+                    return True
+                elif nums[mid]<target:
+                    left = mid+1
+                else:
+                    right = mid-1
+            return False
+        
+        # print(Halfsearch(1,[3,1]))
+        if p == len(nums)-1:
+            return Halfsearch(target, nums[0:p+1])
+        else:
+            return Halfsearch(target, nums[0:p+1]) or Halfsearch(target, nums[p+1:])
