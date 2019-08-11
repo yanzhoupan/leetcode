@@ -1,0 +1,52 @@
+class Solution(object):
+    def minSubArrayLen(self, s, nums):
+        """
+        :type s: int
+        :type nums: List[int]
+        :rtype: int
+        """
+        # nums.sort(reverse=True)
+        # print(nums)
+        # sum = 0
+        # for i in range(len(nums)):
+        #     sum += nums[i]
+        #     if sum >= s:
+        #         return i+1
+        # return 0
+        
+        # the subarray should be contiguous!!
+        
+        # res = 999999
+        # for i in range(len(nums)):
+        #     j = i
+        #     currS = 0
+        #     while j < len(nums):
+        #         currS += nums[j]
+        #         j += 1
+        #         if currS >= s:
+        #             if j-i < res:
+        #                 res = j-i
+        #             break
+        # if res == 999999:
+        #     return 0
+        # else:
+        #     return res
+        
+        # overtime
+        
+        # use 2 points
+        
+        a, b, currS, res = 0, 0, 0, len(nums)+1
+        while b < len(nums):
+            while currS < s and b < len(nums):
+                currS += nums[b]
+                b += 1
+            while currS >= s and a < b:
+                res = min(res, b-a)
+                currS -= nums[a]
+                a += 1
+        if res == len(nums)+1:
+            return 0
+        else:
+            return res
+        
