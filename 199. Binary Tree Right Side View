@@ -1,0 +1,23 @@
+# Definition for a binary tree node.
+# class TreeNode(object):
+#     def __init__(self, x):
+#         self.val = x
+#         self.left = None
+#         self.right = None
+
+class Solution(object):
+    def rightSideView(self, root):
+        """
+        :type root: TreeNode
+        :rtype: List[int]
+        """
+        res = {}
+        def rightSideVals(root, i):
+            if root:
+                res[i] = root.val
+                rightSideVals(root.left, i+1)
+                rightSideVals(root.right, i+1)
+        rightSideVals(root,0)
+        return res.values()
+#     前根序遍历，按层存进字典，能保证每层最后一个遍历的到的元素一定是最右边的元素，输出时字典默认遍历序等于定义序
+        
