@@ -1,0 +1,57 @@
+class WordDictionary(object):
+
+    def __init__(self):
+        """
+        Initialize your data structure here.
+        """
+        from collections import defaultdict
+        self.lookup = defaultdict(dict)
+        
+
+    def addWord(self, word):
+        """
+        Adds a word into the data structure.
+        :type word: str
+        :rtype: None
+        """
+        tree = self.lookup
+        # print(word)
+        for i in word:
+            # print(i, tree.keys())
+            # print(tree[i])
+            if i in tree.keys():
+                tree = tree[i]
+            else:
+                tree[i] = {}
+                tree = tree[i]
+        tree['#'] = {}
+        
+
+    def search(self, word):
+        """
+        Returns if the word is in the data structure. A word could contain the dot character '.' to represent any one letter.
+        :type word: str
+        :rtype: bool
+        """
+        def helper(word, tree):
+            if not word:
+                if '#' in tree:
+                    return True
+                return False
+            if word[0] == '.':
+                for t in tree:
+                    if helper(word[1:], tree[t]):
+                        return True
+            elif word[0] in tree:
+                if helper(word[1:], tree[word[0]]):
+                    return True
+            return False
+        
+        return helper(word, self.lookup)
+        
+
+
+# Your WordDictionary object will be instantiated and called as such:
+# obj = WordDictionary()
+# obj.addWord(word)
+# param_2 = obj.search(word)
