@@ -1,0 +1,26 @@
+class Solution(object):
+    def numIslands(self, grid):
+        """
+        :type grid: List[List[str]]
+        :rtype: int
+        """
+        def inflect(i, j):
+            # print(i,j,grid[i][j])
+            if i<0 or i>=len(grid) or j<0 or j>=len(grid[0]) or grid[i][j]!="1":
+                return
+            grid[i][j] = "2"
+            # print('pp')
+            inflect(i+1, j)
+            inflect(i-1, j)
+            inflect(i, j+1)
+            inflect(i, j-1)
+            
+        res = 0
+        for i in range(len(grid)):
+            for j in range(len(grid[0])):
+                if grid[i][j] == "1":
+                    inflect(i, j)
+                    res += 1
+                    # print(grid)
+        return res
+#     遍历岛这个二维数组，如果当前数为1，则进入感染函数并将岛个数+1
