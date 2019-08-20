@@ -1,0 +1,36 @@
+class Solution(object):
+    def findOrder(self, numCourses, prerequisites):
+        """
+        :type numCourses: int
+        :type prerequisites: List[List[int]]
+        :rtype: List[int]
+        """
+        # DFS
+        from collections import defaultdict
+        graph = defaultdict(list)
+        for x,y in prerequisites:
+            graph[y].append(x)
+        res = []
+        visited = set() # 已经确定可以学到的课程
+        
+        def dfs(i, being_visited): 
+            # being_visited：当前正在遍历的课程序列（检测是否有环）
+            if i in being_visited:
+                return False
+            if i in visited:
+                return True
+            
+            being_visited.add(i)
+            for j in graph[i]:
+                if not dfs(j, being_visited):
+                    return False
+            being_visited.remove(i)
+            
+            res.append(i)
+            visited.add(i)
+            return True
+        
+        for i in range(numCourses):
+            if not dfs(i, set()):
+                return []
+        return res[::-1]
